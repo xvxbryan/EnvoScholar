@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link
+      rel="stylesheet"
+      href="../homepage_assets/bootstrap/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic"
+    />
+    <link
+      rel="stylesheet"
+      href="../homepage_assets/fonts/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="../homepage_assets/fonts/typicons.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
+    />
+    <link rel="stylesheet" href="../homepage_assets/css/untitled.css" />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../src/widgets/jquery.ncbo.tree.css"
+    />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="../src/widgets/jquery.ncbo.tree-2.0.2.js"></script>
+  </head>
+
+  <body>
+    <nav
+      class="navbar navbar-dark navbar-expand-md fixed-top"
+      style="background-color:#081E3F;"
+    >
+      <div class="container">
+        <a
+          class="navbar-brand"
+          href="http://localhost:4200/homepage"
+          style="color:#fff;"
+          >Envo Scholar</a
+        >
+
+        <a class="navbar-brand" href="../src/ontology.html" style="color:#fff;"
+          >Ontology</a
+        >
+
+        <button
+          class="navbar-toggler"
+          data-toggle="collapse"
+          data-target="#navcol-1"
+        >
+          <span class="sr-only">Toggle navigation</span>
+          <span
+            class="navbar-toggler-icon"
+            style="color:rgb(128,128,128);"
+          ></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+          <ul class="nav navbar-nav flex-grow-1 justify-content-end">
+            <li class="nav-item" role="presentation">
+              <a
+                class="nav-link active"
+                href="http://localhost:4200/login"
+                style="color:#fff;"
+              >
+                <i class="fa fa-pencil"></i>&nbsp; Account</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div id="widget_tree" style="margin-top: 60px;"></div>
+    <script>
+      var widget_tree = $("#widget_tree").NCBOTree({
+        apikey: "bcf3d9b2-a36e-4061-98e5-e119af71a496",
+        ontology: "ENVO"
+      });
+    </script>
+
+    <iframe
+      frameborder="0"
+      src="http://bioportal.bioontology.org/widgets/visualization?ontology=ENVO&class=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFOODON_03304066&apikey=bcf3d9b2-a36e-4061-98e5-e119af71a496"
+      style="width: 1200px; height: 500px;"
+    ></iframe>
+  </body>
+</html>

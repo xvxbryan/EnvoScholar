@@ -1,0 +1,78 @@
+[type="search"] {
+  border-radius: 10px;
+  /*border-color:black;*/
+  /*align-self:center;*/
+  /*padding-right:50px;*/
+}
+
+.btn.btn-primary.flex-grow-1.order-2 {
+  border-radius: 20px;
+  /*padding-left:0px;*/
+}
+
+.btn-info.searchbutton {
+  color: #081e3f;
+  background-color: #081e3f;
+  padding-top: 10px;
+}
+
+.btn:not(:disabled):not(.disabled) {
+  border-radius: 20px;
+  padding: 10px;
+  color: #b6862c;
+}
+
+.navbar.navbar-dark.navbar-expand-md.fixed-top.bg-dark {
+  opacity: 0.9;
+  background-color: rgb(181, 255, 237);
+}
+
+.col.Searchbox {
+  padding-left: 75px;
+}
+
+@media (min-width: 992px) {
+  .col.Searchbox {
+    padding-left: 75px;
+  }
+}
+
+.searchbutton {
+  background-color: #081e3f;
+  border-color: #b6862c;
+}
+
+.query-search-form {
+  margin-left: 50px;
+  width: 450px;
+}
+
+#fiu-logo {
+  width: 250px;
+  margin-right: 100px;
+  bottom: 0;
+  left: 1cm;
+  position: absolute;
+}
+
+
+
+@media (min-width: 200px) {
+  .footer {
+    height: 150px;
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.02);
+  }
+}
+
+@media (min-width: 765px) {
+  .footer {
+    height: 120px;
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.02);
+  }
+}

@@ -1,0 +1,102 @@
+<head>
+  <link
+    rel="stylesheet"
+    href="../../../assets/css/Navigation-with-Search.css"
+  />
+  <link rel="stylesheet" href="../../../homepage_assets/css/untitled.css" />
+</head>
+<!-- Navigation Bar -->
+<nav
+  class="navbar navbar-dark navbar-expand-md fixed-top"
+  style="background-color:#081E3F;"
+>
+  <div class="container">
+    <!-- Envo Scholar Tab -->
+    <a
+      class="navbar-brand"
+      href="http://localhost:4200/"
+      style="color:#fff; margin-right: 100px"
+      >Envo Scholar</a
+    >
+
+    <!-- Ontology Tab -->
+    <a
+      class="navbar-brand"
+      href="../src/ontology.html"
+      style="color:#fff; margin-right: 100px"
+      >Ontology</a
+    >
+
+    <button
+      class="navbar-toggler"
+      data-toggle="collapse"
+      data-target="#navcol-1"
+    >
+      <span class="sr-only">Toggle navigation</span>
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navcol-1">
+      <ul class="nav navbar-nav"></ul>
+      <form class="form-inline mr-auto" target="_self">
+        <div class="form-group">
+          <label style="color:#B6862C;" for="search-field">
+            <i class="fa fa-search"></i>
+          </label>
+          <!-- Search Bar -->
+          <input
+            ngModel
+            name="search"
+            #search="ngModel"
+            class="form-control"
+            value="{{search}}"
+            type="search"
+            placeholder="Search Peer Reviewed Articles"
+            id="search-field"
+            style="background-color: #fff;"
+          />
+
+          <!-- Submit Button -->
+          <input
+            type="submit"
+            value="Search"
+            id="search"
+            onclick="window.location.href='http://localhost:4200/displayresults?search=' + search[0].value"
+            class="searchbutton"
+            role="button"
+            style="color:#B6862C;/*height:40px;*//*width:40px;*/margin:0px;padding:10px 20px;border-radius:20px; margin-left: 10px;"
+          />
+        </div>
+      </form>
+
+      <li class="nav-item" role="presentation">
+        <a
+          class="nav-link active"
+          href="http://localhost:4200/login"
+          style="color:#fff;"
+          (click)="onLogout()"
+        >
+          <i class="fa fa-pencil"></i>&nbsp; Logout</a
+        >
+      </li>
+    </div>
+  </div>
+</nav>
+
+<div *ngIf="userDetails" id="profile-body">
+  <button class="searchbutton submit" (click)="profile()">Profile</button>
+
+  <h2>
+    {{ userDetails.fullName.split(" ")[0] }}
+    {{ userDetails.fullName.split(" ")[1] }}'s Search History
+  </h2>
+  <br />
+  <div style="margin-top: 10px;" *ngFor="let search of userDetails.search">
+    <a
+      style="margin-top: 10px; margin-left: 5px;font-size: 20px;
+      color: rgb(0, 0, 200);"
+      href="http://localhost:4200/displayresults?search={{ search.spacedQuery }}"
+      >{{ search.spacedQuery }}</a
+    >
+  </div>
+</div>

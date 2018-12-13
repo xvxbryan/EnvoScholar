@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Display Results</title>
+
+    <!-- CSS and Bootstrap files needed for styling -->
+    <link
+      rel="stylesheet"
+      href="../../../assets/bootstrap/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="../../../assets/fonts/typicons.min.css" />
+    <link rel="stylesheet" href="../../../assets/css/Footer-Basic.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../../../assets/css/Navigation-with-Search.css"
+    />
+    <link rel="stylesheet" href="../../../assets/css/styles.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="../../../citestyle.css"
+    />
+  </head>
+
+  <body>
+    <!-- Navbar Component -->
+    <app-navbarwithsearch></app-navbarwithsearch>
+
+    <!-- Concepts -->
+    <div class="container concepts">
+      <div id="concepts">
+        <div
+          class="jumbotron flex-grow-1 justify-content-between"
+          class="text-center"
+          style="background-color:#B6862C;"
+        >
+          <div *ngIf="response">
+            <div style="display: inline-block">
+              <!-- Functionality for dynamically generating concept buttons -->
+              <button
+                *ngFor="
+                  let hit of (response.hits.hits
+                    | paginate: { itemsPerPage: 6, currentPage: p });
+                  let i = index
+                "
+                id="concept"
+                (click)="addConcept(i)"
+                class="btn btn-primary"
+                role="button"
+              >
+                {{ hit._source.keywords[0].keyword }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="editResults">
+        <h4>Date Range</h4>
+        <input
+          class="filter-input"
+          ngModel
+          name="minYear"
+          #minYear="ngModel"
+          type="minYear"
+          placeholder="From"
+          style="margin-right: 10px"
+        />
+        <input
+          class="filter-input"
+          ngModel
+          name="maxYear"
+          #maxYear="ngModel"
+          type="maxYear"
+          placeholder="To"
+        />
+        <div>
+          <input
+            class="searchbutton filter-button"
+            type="button"
+            value="ClearFilters"
+            (click)="clearFilters()"
+            style="color:#B6862C;/*height:40px;*//*width:40px;*/margin:0px;padding:10px 20px;border-radius:20px; margin-left: 10px; margin-bottom: 10px; float:right"
+          />
+
+<<<<<<< HEAD
+  <!--Concepts-->
+  <div class="container concepts">
+    <div id="concepts">
+        <div class="jumbotron flex-grow-1 editResults" style="background-color:rgb(0, 29, 109);">
+            <button (click)="sort('_source.cover_date')">Recency</button>
+            <button (click)="sort('_score')">Relevance</button>
+        
+            <input ngModel name="minYear" #minYear="ngModel" type="number" (focusout)="checkRange(minYear.viewModel)" placeholder="From">
+            <input ngModel name="maxYear" #maxYear="ngModel" type="number" (focusout)="checkRange(maxYear.viewModel)" placeholder="To">
+            <input type="button" value="Filter Date Range" (click)="getDate(minYear.viewModel, maxYear.viewModel)">
+            <div *ngIf ="filter">
+              <input type="button" value="ClearFilters" (click)="clearFilters()">
+            </div>
+            
+=======
+          <input
+            class="searchbutton filter-button"
+            type="button"
+            value="Filter Date Range"
+            (click)="getDate(minYear.viewModel, maxYear.viewModel)"
+            style="color:#B6862C;/*height:40px;*//*width:40px;*/margin:0px;padding:10px 20px;border-radius:20px; margin-left: 10px; margin-bottom: 10px;"
+          />
+>>>>>>> a7ab333818c2d6d5245cdf361dd986a51ea5b9a9
+        </div>
+
+        <h4>Sort</h4>
+        <div>
+          <button
+            class="searchbutton sort-button"
+            (click)="sort('_score')"
+            style="color:#B6862C;/*height:40px;*//*width:40px;*/margin:0px;padding:10px 20px;border-radius:20px; margin-left: 10px; margin-bottom: 10px; float: right"
+          >
+            Relevance
+          </button>
+
+          <button
+            class="searchbutton sort-button"
+            (click)="sort('_source.cover_date')"
+            style="color:#B6862C;/*height:40px;*//*width:40px;*/margin:0px;padding:10px 20px;border-radius:20px; margin-left: 10px; margin-bottom: 10px;"
+          >
+            Recency
+          </button>
+        </div>
+      </div>
+<<<<<<< HEAD
+    </div>
+    
+    <div style="margin-bottom: 10px;">
+      <a href="{{website(0)}}" target="_blank" id="subtasks">
+        <i class="fa fa-file-text-o"></i>&nbsp;View Results In Microsoft Academic</a>
+      <a href="{{website(1)}}" target="_blank" id="subtasks">
+        <i class="fa fa-file-text-o"></i>&nbsp;View Results In Semantic Scholar</a>
+    </div>
+    <!--Article results-->
+    <div class="results" style="border-bottom:#e2e2e2 solid; margin-top: 10px;">
+      <div class="jumbotron" style="color:#222222;background-color:#ffffff;">
+=======
+
+      <!-- Article results -->
+      <div
+        class="results"
+        style="border-bottom:#e2e2e2 solid; margin-top: 10px;"
+      >
+        <div class="jumbotron" style="color:#222222;background-color:#ffffff;">
+          <div *ngIf="response">
+            <div
+              *ngFor="
+                let hit of (finalResponse
+                  | orderBy: key:true
+                  | paginate: { itemsPerPage: 10, currentPage: p });
+                let i = index
+              "
+            >
+              <div style="background-color: rgba(0,0,0,.025)">
+                <!-- Article title with link to URL -->
+                <a
+                  routerLink="/article"
+                  (click)="navigate(i)"
+                  style="font-size: 20px; color: rgb(0,0,200); padding-left: 5px"
+                  >{{ hit._source.title }}</a
+                >
+                <br />
+                <!-- Article author -->
+                <div
+                  style="display: inline"
+                  *ngFor="
+                    let author of (response.hits.hits[i]._source.authors
+                      | slice: 0:3)
+                  "
+                >
+                  <p
+                    class="authorName"
+                    style="margin-top: 15px; padding-left: 5px"
+                  >
+                    {{ author.name }}
+                  </p>
+                  <p style="display: inline">-</p>
+                </div>
+                <!-- Article date -->
+                <p class="year">{{ hit._source.cover_date | slice: 0:10 }}</p>
+                <!-- Article abstract -->
+                <p style="padding-left: 5px">
+                  {{ hit._source.abstract | slice: 0:200 }}...
+                </p>
+>>>>>>> a7ab333818c2d6d5245cdf361dd986a51ea5b9a9
+
+                <!-- Citation button with popup box -->
+                <div style="margin-bottom: 10px;">
+                  <div id="popupbox" class="popupposition">
+                    <div id="popupwrapper">
+                      <div id="container">
+                        <h3>MLA</h3>
+                        <p>
+                          Casagrande, Daniel J., et al. "Sulfur in peat-forming
+                          systems of the Okefenokee Swamp and Florida
+                          Everglades: origins of sulfur in coal." Geochimica et
+                          Cosmochimica Acta 41.1 (1977): 161-167.
+                        </p>
+                        <p>
+                          <a
+                            href="javascript:void(0)"
+                            (click)="toggle_cite('popupbox')"
+                            >Close</a
+                          >
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <a
+                    href="{{hit._source.url}}"
+                    target="_blank"
+                    style="padding-left: 5px"
+                    id="subtasks"
+                  >
+                    <i class="fa fa-file-pdf-o"></i>&nbsp;View PDF</a
+                  >
+                  <a
+                    href="javascript:void(0)"
+                    (click)="toggle_cite('popupbox')"
+                    id="subtasks"
+                  >
+                    <i class="fa fa-quote-right"></i>&nbsp;Cite</a
+                  >
+
+                  <a
+                    id="subtasks"
+                    href="javascript:void(0)"
+                    (click)="
+                      saveArticle(
+                        hit._source.title,
+                        response.hits.hits[i]._source.authors,
+                        hit._source.cover_date,
+                        hit._source.abstract
+                      )
+                    "
+                    class="subtasks"
+                    tabindex="1"
+                    >&nbsp;<i class="fa fa-save"></i>&nbsp;Save
+                  </a>
+
+                  <div id="share" class="popupposition">
+                    <div id="popupwrapper">
+                      <div id="container">
+                        <div style="margin-bottom: 3px;">
+                          <fb-like url="{{hit._source.url}}"></fb-like>
+                        </div>
+                        <div>
+                          <google-plus url="{{hit._source.url}}"></google-plus>
+                        </div>
+                        <div>
+                          <linkedin-share
+                            url="{{hit._source.url}}"
+                          ></linkedin-share>
+                        </div>
+
+                        <div style="margin-bottom: 3px;">
+                          <pin-it url="{{hit._source.url}}"></pin-it>
+                        </div>
+                        <tweet url="{{hit._source.url}}"></tweet>
+
+                        <p>
+                          <a href="javascript:void(0)" (click)="share('share')"
+                            >Close</a
+                          >
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <a
+                    id="subtasks"
+                    href="javascript:void(0)"
+                    (click)="share('share')"
+                    class="subtasks"
+                  >
+                    <i class="fa fa-share-alt"></i>&nbsp;Share</a
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- Event handler for pagination -->
+            <pagination-controls
+              (pageChange)="p = $event"
+              onclick="window.scrollTo(0,0)"
+            ></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer-basic">
+      <footer>
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="#">Home</a></li>
+          <li class="list-inline-item"><a href="#">Services</a></li>
+          <li class="list-inline-item"><a href="#">About</a></li>
+          <li class="list-inline-item"><a href="#">Terms</a></li>
+          <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+        </ul>
+        <p class="copyright">Envo Scholar © 2018</p>
+      </footer>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bs-animation.js"></script>
+  </body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Display Results</title>
+
+    <!-- CSS and Bootstrap files needed for styling -->
+    <link
+      rel="stylesheet"
+      href="../../../assets/bootstrap/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="../../../assets/fonts/font-awesome.min.css" />
+    <link rel="stylesheet" href="../../../assets/fonts/typicons.min.css" />
+    <link rel="stylesheet" href="../../../assets/css/Footer-Basic.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../../../assets/css/Navigation-with-Search.css"
+    />
+    <link rel="stylesheet" href="../../../assets/css/styles.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="../../../citestyle.css"
+    />
+  </head>
+
+  <body>
+    <!-- Navigation Bar -->
+    <nav
+      class="navbar navbar-dark navbar-expand-md fixed-top"
+      style="background-color:#081E3F;"
+    >
+      <div class="container">
+        <!-- Envo Scholar Tab -->
+        <a
+          class="navbar-brand"
+          href="http://localhost:4200/"
+          style="color:#fff; margin-right: 100px"
+          >Envo Scholar</a
+        >
+
+        <!-- Ontology Tab -->
+        <a
+          class="navbar-brand"
+          href="../src/ontology.html"
+          style="color:#fff; margin-right: 100px"
+          >Ontology</a
+        >
+
+        <button
+          class="navbar-toggler"
+          data-toggle="collapse"
+          data-target="#navcol-1"
+        >
+          <span class="sr-only">Toggle navigation</span>
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navcol-1">
+          <ul class="nav navbar-nav"></ul>
+          <form class="form-inline mr-auto" target="_self">
+            <div class="form-group">
+              <label style="color:#B6862C;" for="search-field">
+                <i class="fa fa-search"></i>
+              </label>
+              <!-- Search Bar -->
+              <input
+                ngModel
+                name="search"
+                #search="ngModel"
+                class="form-control"
+                value="{{search}}"
+                type="search"
+                placeholder="Search Peer Reviewed Articles"
+                id="search-field"
+                style="background-color: #fff;"
+              />
+
+              <!-- Submit Button -->
+              <input
+                type="submit"
+                value="Search"
+                id="search"
+                onclick="window.location.href='http://localhost:4200/displayresults?search=' + search[0].value"
+                class="searchbutton"
+                role="button"
+                style="color:#B6862C;/*height:40px;*//*width:40px;*/margin:0px;padding:10px 20px;border-radius:20px; margin-left: 10px;"
+              />
+            </div>
+          </form>
+
+          <!-- Login Button -->
+          <li class="nav-item" role="presentation">
+            <a
+              class="nav-link active"
+              href="http://localhost:4200/login"
+              style="color:#fff;"
+            >
+              <i class="fa fa-pencil"></i>&nbsp; Account</a
+            >
+          </li>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Article information -->
+    <div *ngIf="response">
+      <div id="info-background">
+        <div></div>
+        <div id="info">
+          <h2 class="header">{{ article_title }}</h2>
+          <small *ngFor="let author of authors" id="author"
+            >{{ author.name }} -
+          </small>
+          <small id="year">{{ year | slice: 0:10 }}</small>
+          <p id="abstract">{{ abstract }}</p>
+
+          <div style="margin-bottom: 10px;">
+            <!-- Citation button with popup box -->
+            <div id="popupbox" class="popupposition">
+              <div id="popupwrapper">
+                <div id="container">
+                  <h3>MLA</h3>
+                  <p>
+                    Casagrande, Daniel J., et al. "Sulfur in peat-forming
+                    systems of the Okefenokee Swamp and Florida Everglades:
+                    origins of sulfur in coal." Geochimica et Cosmochimica Acta
+                    41.1 (1977): 161-167.
+                  </p>
+                  <p>
+                    <a
+                      href="javascript:void(0)"
+                      (click)="toggle_cite('popupbox')"
+                      >Close</a
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- View PDF link which opens Science Direct page in new tab -->
+            <a href="{{url}}" target="_blank" class="subtasks">
+              <i class="fa fa-file-pdf-o"></i>&nbsp;View PDF
+            </a>
+            <!-- Cite link with popup -->
+            <a
+              href="javascript:void(0)"
+              (click)="toggle_cite('popupbox')"
+              class="subtasks"
+            >
+              <i class="fa fa-quote-right"></i>&nbsp;Cite
+            </a>
+            <!-- Save link -->
+            <a
+              href="javascript:void(0)"
+              (click)="saveArticle(article_title, authors, year, abstract)"
+              class="subtasks"
+              tabindex="1"
+              >&nbsp;<i class="fa fa-save"></i>&nbsp;Save
+            </a>
+
+            <!-- Share link popup information -->
+            <div id="share" class="popupposition">
+              <div id="popupwrapper">
+                <div id="container">
+                  <div style="margin-bottom: 3px;">
+                    <fb-like url="{{url}}"></fb-like>
+                  </div>
+                  <div><google-plus url="{{url}}"></google-plus></div>
+                  <div><linkedin-share url="{{url}}"></linkedin-share></div>
+
+                  <div style="margin-bottom: 3px;">
+                    <pin-it url="{{url}}"></pin-it>
+                  </div>
+                  <tweet url="{{url}}"></tweet>
+
+                  <p>
+                    <a href="javascript:void(0)" (click)="share('share')"
+                      >Close</a
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Share link -->
+            <a
+              href="javascript:void(0)"
+              (click)="share('share')"
+              class="subtasks"
+            >
+              <i class="fa fa-share-alt"></i>&nbsp;Share</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Concepts -->
+      <div id="concept-background">
+        <div id="keywords">
+          <h2 class="header" style="margin-left: 6px;">Concepts</h2>
+          <a
+            href="http://localhost:4200/displayresults?search={{concept.keyword}}"
+            *ngFor="let concept of concepts; let i = index"
+            class="keyword"
+            >{{ concept.keyword }}</a
+          >
+        </div>
+      </div>
+
+      <!-- Citations (currently dummy text) -->
+      <h2 class="header" style="margin-left: 91px; margin-top: 30px;">
+        Citations
+      </h2>
+
+      <div id="citations">
+        <a href="" style="margin-left: 12px;"
+          >Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        </a>
+        <br />
+        <small id="year" style="margin-left: 12px;"
+          >2000, Lorem ipsum dolor sit amet consectetur</small
+        >
+        <p style="margin-left: 12px;">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
+          cumque incidunt dolore quae aperiam iusto facere sit molestias
+          consequuntur explicabo blanditiis expedita, ipsa corporis temporibus
+          officiis placeat, earum pariatur similique!
+        </p>
+      </div>
+      <div id="citations">
+        <a href="" style="margin-left: 12px;"
+          >Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        </a>
+        <br />
+        <small id="year" style="margin-left: 12px;"
+          >2000, Lorem ipsum dolor sit amet consectetur</small
+        >
+        <p style="margin-left: 12px;">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
+          cumque incidunt dolore quae aperiam iusto facere sit molestias
+          consequuntur explicabo blanditiis expedita, ipsa corporis temporibus
+          officiis placeat, earum pariatur similique!
+        </p>
+      </div>
+      <div id="citations">
+        <a href="" style="margin-left: 12px;"
+          >Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        </a>
+        <br />
+        <small id="year" style="margin-left: 12px;"
+          >2000, Lorem ipsum dolor sit amet consectetur</small
+        >
+        <p style="margin-left: 12px;">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
+          cumque incidunt dolore quae aperiam iusto facere sit molestias
+          consequuntur explicabo blanditiis expedita, ipsa corporis temporibus
+          officiis placeat, earum pariatur similique!
+        </p>
+      </div>
+      <div id="citations">
+        <a href="" style="margin-left: 12px;"
+          >Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        </a>
+        <br />
+        <small id="year" style="margin-left: 12px;"
+          >2000, Lorem ipsum dolor sit amet consectetur</small
+        >
+        <p style="margin-left: 12px;">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
+          cumque incidunt dolore quae aperiam iusto facere sit molestias
+          consequuntur explicabo blanditiis expedita, ipsa corporis temporibus
+          officiis placeat, earum pariatur similique!
+        </p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer-basic">
+      <footer>
+        <ul class="list-inline">
+          <li class="list-inline-item"><a >Home</a></li>
+          <li class="list-inline-item"><a >Services</a></li>
+          <li class="list-inline-item"><a >About</a></li>
+          <li class="list-inline-item"><a >Terms</a></li>
+          <li class="list-inline-item"><a >Privacy Policy</a></li>
+        </ul>
+        <p class="copyright">Envo Scholar © 2018</p>
+      </footer>
+    </div>
+  </body>
+</html>

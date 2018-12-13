@@ -1,0 +1,21 @@
+.editResults {
+  float: right;
+  margin-top: 10px;
+  background-color: rgba(0, 0, 0, 0.025);
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-right: 10px;
+  margin-right: 5px;
+}
+
+.searchbutton {
+  display: block;
+}
+
+.filter-input {
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border-style: solid;
+  width: 180px;
+  padding-left: 10px;
+}

@@ -1,0 +1,153 @@
+<!-- Navigation Bar -->
+<nav
+  class="navbar navbar-dark navbar-expand-md fixed-top"
+  style="background-color:#081E3F;"
+>
+  <div class="container">
+    <!-- Envo Scholar Tab -->
+    <a class="navbar-brand" style="color:#fff;">Envo Scholar</a>
+
+    <!-- Ontology Tab -->
+    <a class="navbar-brand" href="../src/ontology.html" style="color:#fff;"
+      >Ontology</a
+    >
+    <button
+      class="navbar-toggler"
+      data-toggle="collapse"
+      data-target="#navcol-1"
+    >
+      <span class="sr-only">Toggle navigation</span>
+      <span class="navbar-toggler-icon" style="color:rgb(128,128,128);"></span>
+    </button>
+
+    <!-- Sign In Tab -->
+    <div class="collapse navbar-collapse" id="navcol-1">
+      <ul class="nav navbar-nav flex-grow-1 justify-content-end">
+        <li class="nav-item" role="presentation">
+          <a
+            class="nav-link active"
+            href="http://localhost:4200/login"
+            style="color:#fff;"
+          >
+            <i class="fa fa-pencil"></i>&nbsp; Account</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Header and search bar -->
+<header
+  class="masthead text-white text-center"
+  style="background-color: white; padding-bottom: 50px;"
+  id="background"
+>
+  <div class="container" style="padding:0px 15px;">
+    <div class="row">
+      <div class="col-xl-9 mx-auto" style="height:130px;">
+        <!-- Header text -->
+        <div>
+          <h3 style="color:#B6862C;">The Best Search Engine for</h3>
+          <h3 style="color:#B6862C; margin-top: 35px;">
+            Environmental Peer Reviewed Articles
+          </h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search bar and button -->
+    <div
+      class="row justify-content-center"
+      style="background-color:transparent;margin:0px;"
+    >
+      <div
+        class="col-6 offset-3"
+        style="padding:0px;color:rgb(201,23,23);margin:0px 285px;"
+      >
+        <div class="row" style="margin:0px;">
+          <!-- Search -->
+          <form
+            #saveSearchForm="ngForm"
+            (ngSubmit)="openSearchPage(saveSearchForm)"
+            class="query-search-form"
+          >
+            <!-- Search Bar -->
+            <div class="col">
+              <input
+                ngModel
+                name="search"
+                #search="ngModel"
+                [(ngModel)]="userService.selectedUser.search"
+                class="form-control"
+                type="search"
+                placeholder="Search Peer Reviewed Articles"
+                id="search-field"
+                style="background-color: #fff;"
+              />
+            </div>
+
+            <!-- Search Button -->
+            <div class="row" style="margin:0px;">
+              <div class="col offset-0 align-self-center" style="padding:15px;">
+                <input
+                  type="submit"
+                  value="Search"
+                  id="search"
+                  class="searchbutton"
+                  role="button"
+                  style="color:#B6862C;/*height:40px;*//*width:40px;*/margin:0px;padding:10px 20px;border-radius:20px;"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FIU Panther Logo -->
+  <div style="margin-top: 70px;">
+    <img src="./fiucispanther.jpg" alt="FIU Logo" id="fiu-logo" />
+  </div>
+</header>
+
+<!-- Footer -->
+<div id="footer-div">
+  <footer class="footer" style="padding-top: 10px; ">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 my-auto h-100 text-center text-lg-left">
+          <ul class="list-inline mb-2">
+            <li class="list-inline-item"><a>About</a></li>
+            <li class="list-inline-item"><span>⋅</span></li>
+            <li class="list-inline-item"><a>Contact</a></li>
+            <li class="list-inline-item"><span>⋅</span></li>
+            <li class="list-inline-item"><a>Terms of &nbsp;Use</a></li>
+            <li class="list-inline-item"><span>⋅</span></li>
+            <li class="list-inline-item"><a>Privacy Policy</a></li>
+          </ul>
+          <p class="text-muted small mb-4 mb-lg-0">
+            © EnvoScholar 2018. All Rights Reserved.
+          </p>
+        </div>
+        <div class="col-lg-6 my-auto h-100 text-center text-lg-right">
+          <ul class="list-inline mb-0">
+            <li class="list-inline-item">
+              <a> <i class="fa fa-facebook fa-2x fa-fw"></i> </a>
+            </li>
+            <li class="list-inline-item">
+              <a> <i class="fa fa-twitter fa-2x fa-fw"></i> </a>
+            </li>
+            <li class="list-inline-item">
+              <a> <i class="fa fa-instagram fa-2x fa-fw"></i> </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/js/bs-animation.js"></script>

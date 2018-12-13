@@ -1,0 +1,68 @@
+#info-background {
+  margin-left: 80px;
+  margin-right: 80px;
+  margin-top: 80px;
+  background-color: rgba(0, 0, 0, 0.025);
+  display: inline-block;
+}
+
+#info {
+  padding: 15px;
+  margin-right: 140px;
+}
+
+#author,
+#year {
+  color: green;
+  display: inline;
+  font-style: italic;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.keyword {
+  display: block;
+  margin: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: underline;
+}
+
+#abstract {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#citations {
+  background-color: rgba(0, 0, 0, 0.025);
+  margin-right: 350px;
+  margin-left: 80px;
+}
+
+#concept-background {
+  margin-top: 30px;
+  margin-left: 950px;
+  margin-right: 80px;
+  padding-right: 100px;
+  position: absolute;
+}
+
+#follow {
+  float: right;
+  margin-right: 10px;
+  margin-top: 10px;
+  border-color: #b6862c;
+  color: #b6862c;
+  background-color: #081e3f;
+  border-radius: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 18px;
+  padding-left: 18px;
+}
+
+.subtasks {
+  color: grey;
+  margin-right: 3px;
+}

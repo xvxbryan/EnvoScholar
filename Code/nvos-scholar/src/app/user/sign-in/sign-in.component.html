@@ -1,0 +1,85 @@
+<head>
+  <link rel="stylesheet" href="../../../../homepage_assets/css/untitled.css" />
+</head>
+<!-- Navigation Bar -->
+<nav
+  class="navbar navbar-dark navbar-expand-md fixed-top"
+  style="background-color:#081E3F;"
+>
+  <div class="container">
+    <!-- Envo Scholar Tab -->
+    <a
+      class="navbar-brand"
+      href="http://localhost:4200/"
+      style="color:#fff; margin-right: 100px"
+      >Envo Scholar</a
+    >
+
+    <!-- Ontology Tab -->
+    <a
+      class="navbar-brand"
+      href="../src/ontology.html"
+      style="color:#fff; margin-right: 100px"
+      >Ontology</a
+    >
+
+    <button
+      class="navbar-toggler"
+      data-toggle="collapse"
+      data-target="#navcol-1"
+    >
+      <span class="sr-only">Toggle navigation</span>
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navcol-1">
+      <ul class="nav navbar-nav"></ul>
+    </div>
+  </div>
+</nav>
+<!-- User login information -->
+<form
+  #signInForm="ngForm"
+  (ngSubmit)="signInForm.valid && onSubmit(signInForm)"
+>
+  <input
+    type="text"
+    name="email"
+    #email="ngModel"
+    [(ngModel)]="model.email"
+    placeholder="Email"
+    [pattern]="emailRegex"
+    required
+    [ngClass]="{ 'invalid-textbox': signInForm.submitted && !email.valid }"
+  />
+
+  <div *ngIf="signInForm.submitted && email.errors?.pattern">
+    <label class="validation-message">Invalid email address</label>
+  </div>
+
+  <input
+    type="password"
+    name="password"
+    #password="ngModel"
+    [(ngModel)]="model.password"
+    placeholder="Password"
+    required
+    minlength="4"
+    [ngClass]="{ 'invalid-textbox': signInForm.submitted && !password.valid }"
+  />
+
+  <div *ngIf="signInForm.submitted && password.errors?.minlength">
+    <label class="validation-message">Minimum 4 characters</label>
+  </div>
+
+  <input
+    class="searchbutton"
+    type="submit"
+    value="Sign In"
+    style="color:#B6862C;/*height:40px;*//*width:40px;*/margin:0px;padding:10px 20px;border-radius:20px; margin-left: 10px; margin-bottom: 10px;"
+  />
+</form>
+
+<div class="alert" *ngIf="serverErrorMessages">
+  Incorrect e-mail or password.
+</div>

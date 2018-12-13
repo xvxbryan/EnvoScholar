@@ -1,0 +1,106 @@
+<head>
+  <link rel="stylesheet" href="../../../../homepage_assets/css/untitled.css" />
+</head>
+<!-- Navigation Bar -->
+<nav
+  class="navbar navbar-dark navbar-expand-md fixed-top"
+  style="background-color:#081E3F;"
+>
+  <div class="container">
+    <!-- Envo Scholar Tab -->
+    <a
+      class="navbar-brand"
+      href="http://localhost:4200/"
+      style="color:#fff; margin-right: 100px"
+      >Envo Scholar</a
+    >
+
+    <!-- Ontology Tab -->
+    <a
+      class="navbar-brand"
+      href="../src/ontology.html"
+      style="color:#fff; margin-right: 100px"
+      >Ontology</a
+    >
+
+    <button
+      class="navbar-toggler"
+      data-toggle="collapse"
+      data-target="#navcol-1"
+    >
+      <span class="sr-only">Toggle navigation</span>
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navcol-1">
+      <ul class="nav navbar-nav"></ul>
+    </div>
+  </div>
+</nav>
+
+<!-- User sign up information -->
+<form
+  #signUpForm="ngForm"
+  (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)"
+>
+  <input
+    type="text"
+    #fullName="ngModel"
+    [(ngModel)]="userService.selectedUser.fullName"
+    name="fullName"
+    placeholder="Full Name"
+    required
+    [ngClass]="{ 'invalid-textbox': signUpForm.submitted && !fullName.valid }"
+  />
+  <div *ngIf="signUpForm.submitted && !fullName.valid">
+    <label class="validation-message">This field is required.</label>
+  </div>
+  <input
+    type="text"
+    #email="ngModel"
+    [(ngModel)]="userService.selectedUser.email"
+    name="email"
+    placeholder="Email"
+    required
+    [pattern]="emailRegex"
+    [ngClass]="{ 'invalid-textbox': signUpForm.submitted && !email.valid }"
+  />
+  <div *ngIf="signUpForm.submitted && email.errors">
+    <label *ngIf="email.errors.required" class="validation-message"
+      >This field is required.</label
+    >
+    <label *ngIf="email.errors.pattern" class="validation-message"
+      >Invalid email address.</label
+    >
+  </div>
+  <input
+    type="password"
+    #password="ngModel"
+    [(ngModel)]="userService.selectedUser.password"
+    name="password"
+    placeholder="Password"
+    minlength="4"
+    required
+    [ngClass]="{ 'invalid-textbox': signUpForm.submitted && !password.valid }"
+  />
+  <div *ngIf="signUpForm.submitted && password.errors">
+    <label *ngIf="password.errors.required" class="validation-message"
+      >This field is required.</label
+    >
+    <label *ngIf="password.errors.minlength" class="validation-message"
+      >Enter atleast 4 characters.</label
+    >
+  </div>
+  <input
+    class="searchbutton"
+    type="submit"
+    value="Sign Up"
+    style="color:#B6862C;/*height:40px;*//*width:40px;*/margin:0px;padding:10px 20px;border-radius:20px; margin-left: 10px; margin-bottom: 10px;"
+  />
+</form>
+
+<!-- Success message -->
+<div class="success" *ngIf="showSucessMessage">Saved successfully</div>
+
+<!-- Error message -->
+<div class="alert" *ngIf="serverErrorMessages">{{ serverErrorMessages }}</div>
